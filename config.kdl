@@ -118,12 +118,21 @@ screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 animations {
 }
 
+workspace "zen" {
+	open-on-output "HDMI-A-1"
+}
+
 workspace "d"  {
 }
 
+window-rule {
+	match app-id="app.zen_browser.zen"
+	open-on-workspace "zen"
+	open-maximized true
+}
 
 window-rule {
-	match title="Discord"
+	match app-id="discord"
 	open-on-workspace "d"
 	open-maximized true
 }
@@ -179,6 +188,8 @@ binds {
     Mod+Q hotkey-overlay-title="Open a Terminal: kitty" { spawn "kitty"; }
     Mod+D hotkey-overlay-title="Run an Application: noctalia" { spawn-sh "noctalia-shell ipc call launcher toggle"; }
     Super+Alt+L hotkey-overlay-title="Lock the Screen: noctalia" { spawn-sh "noctalia-shell ipc call lockScreen lock"; }
+		Mod+S { focus-workspace "d"; }
+		Mod+Z { focus-workspace "zen"; }
 
     // Use spawn-sh to run a shell command. Do this if you need pipes, multiple commands, etc.
     // Note: the entire command goes as a single argument. It's passed verbatim to `sh -c`.
